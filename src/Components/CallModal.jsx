@@ -12,6 +12,7 @@ const CallModal = observer(({ visible, callId, onCloseModal }) => {
   const fetchCall = async () => {
     setLoadingCall(true);
     const call = await fetchCallById(callId);
+    if(!call) onCloseModal();
     setFetchedCall(call);
     setLoadingCall(false);
   };

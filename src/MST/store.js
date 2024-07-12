@@ -59,6 +59,7 @@ const store = types
         return { ...data, created_at: formattedDate };
       } catch (e) {
         console.log("Error fetching call by id : ", e.message);
+        return null;
       }
     }),
     updateCall: flow(function* ({
@@ -73,7 +74,8 @@ const store = types
         });
         reload ? self.fetchAllCalls() : null;
       } catch (e) {
-        console.log("Error updating call: ", e.message);
+        console.log("Error updating call: ", e.message);        
+        self.interface.setIsLoading(false);
       }
     }),
     updateAllCalls: flow(function* ({ is_archived }) {

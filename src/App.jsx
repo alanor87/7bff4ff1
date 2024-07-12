@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Header, Call, Loader, BatchOperations, CallModal } from "./Components";
+import {
+  Header,
+  Footer,
+  Call,
+  Loader,
+  BatchOperations,
+  CallModal,
+} from "./Components";
 import { observer } from "mobx-react-lite";
 
 import store from "./MST/store";
@@ -9,12 +16,13 @@ const tabsList = ["Active", "Archived"];
 
 const App = observer(() => {
   const {
-    interface: { theme, activeTab, isLoading, setActiveTab },
+    interface: { activeTab, isLoading, setActiveTab },
     getCalls,
     fetchAllCalls,
     updateCall,
     updateAllCalls,
   } = store;
+
 
   const [showCallModal, setShowCallModal] = useState(false);
   const [selectedCallId, setSelectedCallId] = useState();
@@ -77,6 +85,7 @@ const App = observer(() => {
         </div>
         <Loader show={isLoading} />
       </div>
+      <Footer activeTab={activeTab} />
       <CallModal
         visible={showCallModal}
         callId={selectedCallId}
