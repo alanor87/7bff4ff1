@@ -10,7 +10,7 @@ const CallModal = observer(({ visible, callId, onCloseModal }) => {
   const { fetchCallById } = store;
 
   useEffect(() => {
-    if (callId) fetchCall();
+    if (visible && callId) fetchCall();
   }, [visible]);
 
   const fetchCall = async () => {
@@ -39,7 +39,7 @@ const CallModal = observer(({ visible, callId, onCloseModal }) => {
                         key.slice(1).replace("_", " ") +
                         " : "}
                     </span>
-                    <span>{value}</span>
+                    <span>{String(value)}</span>
                   </li>
                 );
               })}
