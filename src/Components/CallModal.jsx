@@ -9,17 +9,21 @@ const CallModal = observer(({ visible, callId, onCloseModal }) => {
   const [loadingCall, setLoadingCall] = useState(false);
   const { fetchCallById } = store;
 
+  useEffect(() => {
+    if (callId) fetchCall();
+  }, [visible]);
+
   const fetchCall = async () => {
     setLoadingCall(true);
     const call = await fetchCallById(callId);
-    if(!call) onCloseModal();
+    if (!call) {
+      onCloseModal();
+      setLoadingCall(false);
+      return;
+    }
     setFetchedCall(call);
     setLoadingCall(false);
   };
-
-  useEffect(() => {
-    if (callId) fetchCall();
-  }, [callId]);
 
   return (
     <div className={classNames("callModalBackdrop", { visible })}>
