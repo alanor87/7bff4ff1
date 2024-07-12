@@ -42,6 +42,7 @@ const Call = ({ call, onClick, onArchiveClick }) => {
           iconName={call.is_archived ? "icon_unarchive" : "icon_archive"}
           side={40}
         />
+       {call.is_archived ? "Restore" : "Archive"}
       </div>
     </li>
   );

@@ -8,7 +8,12 @@
   padding: 10px;
   border-radius: 10px;
   border: 2px solid var(--color-bg-2);
+  transition: background-color 250ms ease-out;
 }
+.callTile:hover {
+background-color: var(--color-bg-2);
+}
+
 
 .callTile svg {
   color: var(--color-accent);
@@ -44,5 +49,10 @@
 }
 
 .archiveRestore {
+  font-size: 11px;  
   cursor: pointer;
+  transition: transform 250ms ease-out;
+}
+.archiveRestore:hover{
+  transform: scale(1.1);
 }
