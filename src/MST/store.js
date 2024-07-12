@@ -50,7 +50,7 @@ const store = types
           .toLocaleString("en-US", {
             day: "numeric",
             month: "long",
-            year: "2-digit",
+            year: "numeric",
             hour: "numeric",
             hour12: true,
             minute: "2-digit",
