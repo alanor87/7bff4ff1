@@ -1,0 +1,12 @@
+.batchOperations {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 0 10px;
+}
+
+.batchOperations button {
+  transform: translatex(-100%);
+}
+.batchOperations button.archivedSelected {
+  transform: translatex(0);
+}

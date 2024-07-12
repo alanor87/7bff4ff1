@@ -1,17 +1,89 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import { Header, Call, Loader, BatchOperations, CallModal } from "./Components";
+import { observer } from "mobx-react-lite";
 
-import Header from './Header.jsx';
+import store from "./MST/store";
 
-const App = () => {
+const tabsList = ["Active", "Archived"];
+
+const App = observer(() => {
+  const {
+    interface: { theme, activeTab, isLoading, setActiveTab },
+    getCalls,
+    fetchAllCalls,
+    updateCall,
+    updateAllCalls,
+  } = store;
+
+  const [showCallModal, setShowCallModal] = useState(false);
+  const [selectedCallId, setSelectedCallId] = useState();
+
+  useEffect(() => {
+    fetchAllCalls();
+  }, []);
+
+  const batchOperationClickHandler = () => {
+    updateAllCalls({
+      is_archived: activeTab === "Active" ? true : false,
+    });
+  };
+
+  const onTabChange = (tab) => () => {
+    setActiveTab(tab);
+    fetchAllCalls();
+  };
+
+  const modalOpenHandler = (callId) => {
+    setSelectedCallId(callId);
+    setShowCallModal(true);
+  };
+
+  const modalCloseHandler = () => {
+    setShowCallModal(false);
+  };
+
   return (
-    <div className='container'>
-      <Header/>
-      <div className="container-view">Some activities should be here</div>
+    <div className="container">
+      <Header tabs={tabsList} activeTab={activeTab} onTabChange={onTabChange} />
+      <BatchOperations
+        activeTab={activeTab}
+        onBatchOperationClick={batchOperationClickHandler}
+        isLoading={isLoading}
+      />
+      <div className="container-view">
+        <div
+          className="listWrapper"
+          style={
+            activeTab === "Archived" ? { transform: "translatex(-50%)" } : {}
+          }
+        >
+          {Object.entries(getCalls).map(([callType, callsList]) => {
+            return (
+              <ul key={callType} className="callsList">
+                {callsList.length
+                  ? callsList.map((call) => (
+                      <Call
+                        key={call.id}
+                        call={call}
+                        onClick={modalOpenHandler}
+                        onArchiveClick={updateCall}
+                      />
+                    ))
+                  : "No calls"}
+              </ul>
+            );
+          })}
+        </div>
+        <Loader show={isLoading} />
+      </div>
+      <CallModal
+        visible={showCallModal}
+        callId={selectedCallId}
+        onCloseModal={modalCloseHandler}
+      />
     </div>
   );
-};
+});
 
-ReactDOM.render(<App/>, document.getElementById('app'));
-
-export default App;
+ReactDOM.render(<App />, document.getElementById("app"));

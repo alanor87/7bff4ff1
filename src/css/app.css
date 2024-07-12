@@ -1,3 +1,23 @@
+:root {
+  --color-accent: rgb(42, 196, 32);
+  --color-bg-1: rgb(255, 255, 255);
+  --color-bg-2: rgb(225, 225, 225);
+  --color-text-1: rgb(157, 157, 157);
+}
+
+button {
+  padding: 8px;
+  border-radius: 10px;
+  border: 2px solid var(--color-bg-2);
+  cursor: pointer;
+  transition: transform 500ms ease-out, opacity 500ms ease-out;
+}
+button.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: initial;
+}
+
 #app {
   position: absolute;
   display: flex;
@@ -10,16 +30,51 @@
 }
 
 #app .container {
+  position: relative;
   width: 376px;
   height: 666px;
-  z-index: 100;
-
-  background: white;
+  overflow: hidden;
+  background-image: linear-gradient(
+    330deg,
+    hsl(122deg 65% 78%) 0%,
+    hsl(122deg 64% 81%) 5%,
+    hsl(122deg 63% 84%) 11%,
+    hsl(122deg 63% 86%) 17%,
+    hsl(122deg 62% 89%) 24%,
+    hsl(122deg 61% 91%) 32%,
+    hsl(122deg 61% 93%) 43%,
+    hsl(122deg 60% 96%) 57%,
+    hsl(122deg 60% 98%) 75%,
+    hsl(0deg 0% 100%) 100%
+  );
   border-radius: 3px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .9);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.9);
+  z-index: 100;
 }
 
 #app .container-view {
-  padding: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: fit-content;
+  min-height: 500px;
+  max-height: calc(100vh - 160px);
+  padding: 10px 0;
+  overflow-x: hidden;
 }
 
+.listWrapper {
+  display: flex;
+  width: 200%;
+  transition: transform 500ms ease-out;
+}
+.callsList {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  list-style: none;
+  padding: 0 10px;
+}

@@ -1,0 +1,55 @@
+.callModalBackdrop {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  transition: opacity 500ms ease-out;
+}
+
+.callModalBackdrop.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.callModal {
+  position: relative;
+  box-sizing: border-box;
+  width: 80%;
+  height: fit-content;
+  min-height: 320px;
+  border-radius: 10px;
+  border: 2px solid var(--color-bg-2);
+  padding: 20px;
+  background-color: var(--color-bg-1);
+}
+
+.callModalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.callModalDetails li {
+  display: flex;
+  align-items: baseline;
+}
+
+.callModalDetails li span:first-child {
+  width: 30%;
+  font-size: 11px;
+  color: var(--color-text-1);
+}
+
+.callModalCloseWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}

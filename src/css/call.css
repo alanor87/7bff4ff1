@@ -1,0 +1,48 @@
+.callTile {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--color-bg-2);
+}
+
+.callTile svg {
+  color: var(--color-accent);
+}
+
+.callDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.numbers {
+  display: flex;
+  gap: 5px;
+}
+.number,
+.property {
+  display: flex;
+  flex-basis: 50%;
+}
+.number span:first-child {
+  width: 50px;
+}
+
+.properties {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-text-1);
+}
+
+.archiveRestore {
+  cursor: pointer;
+}

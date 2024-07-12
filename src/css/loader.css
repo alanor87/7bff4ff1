@@ -1,0 +1,93 @@
+@keyframes shadowAnimation {
+  0% {
+    box-shadow: 0 0 10px 10px var(--color-accent);
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    box-shadow: 0 0 30px 10px var(--color-accent);
+    transform: scale(1);
+  }
+}
+
+@keyframes animationInner {
+  0% {
+    box-shadow: inset 0 0 0 0 var(--color-accent);
+    transform: scale(0);
+  }
+
+  50% {
+    box-shadow: inset 0 0 10px 10px var(--main-background-color);
+  }
+
+  100% {
+    box-shadow: inset 0 0 20px 20px var(--color-accent);
+    transform: scale(1);
+  }
+}
+
+.loaderBackdrop {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+  transition: blur 500ms ease-out, opacity 500ms ease-out;
+}
+
+.loaderBackdrop.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.loaderContainerWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loaderContainer {
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  animation-name: shadowAnimation;
+  animation-duration: 4s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.loaderInnerContainer {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  animation-name: animationInner;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  pointer-events: none;
+}
+
+.loaderText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  user-select: none;
+}
