@@ -11,9 +11,8 @@
   transition: background-color 250ms ease-out;
 }
 .callTile:hover {
-background-color: var(--color-bg-2);
+  background-color: var(--color-bg-2);
 }
-
 
 .callTile svg {
   color: var(--color-accent);
@@ -30,6 +29,7 @@ background-color: var(--color-bg-2);
 
 .numbers {
   display: flex;
+  flex-direction: column;
   gap: 5px;
 }
 .number,
@@ -49,10 +49,10 @@ background-color: var(--color-bg-2);
 }
 
 .archiveRestore {
-  font-size: 11px;  
+  font-size: 11px;
   cursor: pointer;
   transition: transform 250ms ease-out;
 }
-.archiveRestore:hover{
+.archiveRestore:hover {
   transform: scale(1.1);
 }
