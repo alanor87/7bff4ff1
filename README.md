@@ -1,5 +1,7 @@
 ## Summary
 
+Demo page : https://7bff4ff1-demo.netlify.app/
+
 A few remarks on the code :
 
 - I decided not to use UI libraries here, since given the size of the application, any UI library would be a huge overhead.
