@@ -29,6 +29,18 @@ const store = types
         { activeTabCalls: [], archivedTabCalls: [] }
       );
     },
+    get activeCallsNumber() {
+      {
+        const count = self.calls.filter(call => !call.is_archived).length;
+        return count > 99 ? '>99' : count;
+      }
+    },
+    get archivedCallsNumber() {
+      {
+        const count = self.calls.filter(call => call.is_archived).length;
+        return count > 99 ? '>99' : count;
+      }
+    }
   }))
   .actions((self) => ({
     fetchAllCalls: flow(function* () {
@@ -74,7 +86,7 @@ const store = types
         });
         reload ? self.fetchAllCalls() : null;
       } catch (e) {
-        console.log("Error updating call: ", e.message);        
+        console.log("Error updating call: ", e.message);
         self.interface.setIsLoading(false);
       }
     }),

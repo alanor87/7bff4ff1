@@ -18,11 +18,12 @@ const App = observer(() => {
   const {
     interface: { activeTab, isLoading, setActiveTab },
     getCalls,
+    activeCallsNumber,
+    archivedCallsNumber,
     fetchAllCalls,
     updateCall,
     updateAllCalls,
   } = store;
-
 
   const [showCallModal, setShowCallModal] = useState(false);
   const [selectedCallId, setSelectedCallId] = useState();
@@ -53,7 +54,13 @@ const App = observer(() => {
 
   return (
     <div className="container">
-      <Header tabs={tabsList} activeTab={activeTab} onTabChange={onTabChange} />
+      <Header
+        tabs={tabsList}
+        activeTab={activeTab}
+        onTabChange={onTabChange}
+        archivedCount={archivedCallsNumber}
+        activeCount={activeCallsNumber}
+      />
       <BatchOperations
         activeTab={activeTab}
         onBatchOperationClick={batchOperationClickHandler}

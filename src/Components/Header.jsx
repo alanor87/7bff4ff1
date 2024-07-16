@@ -1,9 +1,17 @@
 import React from "react";
 import classNames from "classnames";
 
-const Header = ({ tabs, activeTab, onTabChange }) => {
+const Header = ({
+  tabs,
+  activeTab,
+  onTabChange,
+  activeCount,
+  archivedCount,
+}) => {
   return (
-    <header className={classNames({ archivedSelected: activeTab === 'Archived' })}>
+    <header
+      className={classNames({ archivedSelected: activeTab === "Archived" })}
+    >
       <svg
         height="168px"
         viewBox="0 0 486 168"
@@ -40,13 +48,16 @@ const Header = ({ tabs, activeTab, onTabChange }) => {
           />
         </g>
       </svg>
-      <div className={classNames("tabs", { archivedSelected: activeTab === 'Archived' })}>
+      <div
+        className={classNames("tabs", {
+          archivedSelected: activeTab === "Archived",
+        })}
+      >
         {tabs.map((tab) => (
-          <div
-            key={tab}
-            className="tab"
-            onClick={onTabChange(tab)}
-          >
+          <div key={tab} className="tab" onClick={onTabChange(tab)}>
+            <div className="callsCount">
+              {tab === "Archived" ? archivedCount : activeCount}
+            </div>
             {tab}
           </div>
         ))}
